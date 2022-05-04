@@ -3,11 +3,11 @@ package com.paav.StockManagement.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -17,11 +17,20 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name="product_name")
     private String name;
+    @Column(name="product_manufacturer")
     private String manufacturer;
-    private long rate;
+    @Column(name = "product_rate")
+    private float rate;
     private String hsn;
     private String batch;
-    private String expiry;
-    private String add;
+    @Column(name = "expiry_date")
+    @DateTimeFormat(pattern = "MM-dd-yyyy")
+    private Date expiry;
+    @Column(name = "add_date")
+    @DateTimeFormat(pattern = "MM-dd-yyyy")
+    private Date add;
+    @Column(name = "created_by")
+    private Timestamp created;
 }
